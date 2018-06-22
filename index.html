@@ -325,6 +325,9 @@
         function changeItemColor(item, hex){
             var hex = tinycolor(hex).toHexString();
             item.html(hex).css('background-color', hex);
+            if(tinycolor(hex).isLight() == true){
+                item.css('color', '#000');
+            }
         };
 
         $('.btn_download').click(function(){
