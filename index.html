@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <title>Duotone图制作工具</title>
+    <link rel="stylesheet" href="duotone_maker.css" />
+</head>
+<body>
+    <article class="wrap">    
+    	<header class="top_bar">
+            <section class="top_bar__bd">
+                <h1 class="system_name" style="display:none;"><span>Duo</span><span>tone</span></h1>
+
+                <div class="user" style="display:none;">
+                    <div class="user__aside">
+                        <img class="user__avatar" src="http://y.gtimg.cn/mediastyle/global/extra/singer/1.jpg" alt="" >
+                    </div>
+                    <div class="user__bd">
+                        <h2 class="user__name">用化名</h2>
+                        <a class="logout" href="##">退出</a>     
+                    </div>
+                </div>
+
+                <div style="display:none;">你好，请先<a class="login" href="##">登录</a></div>
+                
+            </section>
+    	</header>
+
+        <section class="sidebar">
+            <ol class="step_list">
+                <li class="step_list__item">                           
+                    <div class="upload_pic">
+                        <a class="upload_pic__btn mod_btn" href="javascript:;">选择图片</a>
+                        <input class="upload_pic__file" id="js_upload" type="file" name="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" />
+                    </div>
+                </li> 
+                <li class="step_list__item">
+                    <h2 class="step_list__tit">默认配色</h2>
+                    <ul class="default_color_list">
+                        <li class="default_color_list__item" data-hex="00007E,6AFF7F">
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#00007E"></span>
+                            </div>
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#6AFF7F"></span>
+                            </div>
+                        </li>
+                        <li class="default_color_list__item" data-hex="4222f1,9eefe1">
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#4222f1"></span>
+                            </div>
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#9eefe1"></span>
+                            </div>
+                        </li>                        
+                        <li class="default_color_list__item" data-hex="ed3ea4,fec76c">
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#ed3ea4"></span>
+                            </div>
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#fec76c"></span>
+                            </div>
+                        </li>
+                        <li class="default_color_list__item" data-hex="110945,ee184c">
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#110945"></span>
+                            </div>
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#ee184c"></span>
+                            </div>
+                        </li>                        
+                        <li class="default_color_list__item" data-hex="3d3f4c,26b7a0">
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#3d3f4c"></span>
+                            </div>
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#26b7a0"></span>
+                            </div>
+                        </li>
+                        <li class="default_color_list__item" data-hex="9D0C84,91B6C9">
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#9D0C84"></span>
+                            </div>
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#91B6C9"></span>
+                            </div>
+                        </li>
+                        <li class="default_color_list__item" data-hex="1e397e,f46464">
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#1e397e"></span>
+                            </div>
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#f46464"></span>
+                            </div>
+                        </li>
+                        <li class="default_color_list__item" data-hex="a1305e,84f0d0">
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#a1305e"></span>
+                            </div>
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#84f0d0"></span>
+                            </div>
+                        </li>
+                        <li class="default_color_list__item" data-hex="5526c2,f8ed45">
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#5526c2"></span>
+                            </div>
+                            <div class="default_color_list__cut">
+                                <span class="default_color_list__value" style="background-color:#f8ed45"></span>
+                            </div>
+                        </li>                                      
+                    </ul>
+                </li>    
+                <li class="step_list__item">                        
+                    <div class="select_color">
+                        <h2 class="step_list__tit">自定义配色</h2>
+                        <div class="select_color__item">
+                            <span class="select_color__value" id="front_color" style=""></span>
+                            <div class="color_picker" id="js_cp">
+                                <div class="color_picker__bd">
+                                    <canvas class="color_picker__canvas" width="300" height="156"></canvas>
+                                    <i class="color_picker__circle"></i>
+                                </div>
+                                <div class="color_picker__hue">
+                                    <i class="color_picker__hue_circle"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="select_color__item">
+                            <span class="select_color__value" id="back_color" style=""></span>
+                            <div class="color_picker" id="js_cp2">
+                                <div class="color_picker__bd">
+                                    <canvas class="color_picker__canvas" width="300" height="156"></canvas>
+                                    <i class="color_picker__circle"></i>
+                                </div>
+                                <div class="color_picker__hue">
+                                    <i class="color_picker__hue_circle"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                                                                   
+                </li>
+                <li class="step_list__item">
+                    <ul class="size_list" style="display:none;">
+                        <li class="size_list__item">
+                            <label><input class="size_list__checkbox" type="checkbox" name="">750x750</label>
+                        </li>
+                        <li class="size_list__item">
+                            <label><input class="size_list__checkbox" type="checkbox" name="">500x500</label>
+                        </li>
+                        <li class="size_list__item">
+                            <label><input class="size_list__checkbox" type="checkbox" name="">300x300</label>
+                        </li>
+                        <li class="size_list__item">
+                            <label><input class="size_list__checkbox" type="checkbox" name="">150x150</label>
+                        </li>                                                                       
+                    </ul>
+
+                    <div class="box_download">                  
+                        <a class="mod_btn btn_download" href="javascript:;">下载图片</a>
+                    </div>                     
+                </li>         
+            </ol>
+        </section>
+
+        <section class="main">
+
+            <div class="preview">
+                <svg class="preview__svg" id="preview_cont" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <filter class="svg_filter" id="duotone_6736dd10c5f8">
+                        <feColorMatrix type="matrix" result="gray"
+                            values="1 0 0 0 0
+                                    1 0 0 0 0
+                                    1 0 0 0 0
+                                    0 0 0 1 0" >
+                        </feColorMatrix>
+                        <feComponentTransfer color-interpolation-filters="sRGB" result="duotone"> 
+                            <feFuncR id="funcR" type="table" tableValues=""></feFuncR>
+                            <feFuncG id="funcG" type="table" tableValues=""></feFuncG>
+                            <feFuncB id="funcB" type="table" tableValues=""></feFuncB>
+                            <feFuncA type="table" tableValues="0 1"></feFuncA>
+                        </feComponentTransfer> 
+                    </filter>                   
+                    <image id="preview_img"  x="0" y="0" width="100%" height="100%" xlink:href="preview3.jpg" filter="url(#duotone_6736dd10c5f8)"></image>
+                </svg>
+            </div>                 
+
+        </section>
+
+    </article>
+
+    <div id="img_box"></div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/tinycolor/1.4.1/tinycolor.js"></script>
+
+    <script>       
+        var fileName,//文件名
+            fileType,//文件类型
+            fileSize,//文件大小
+            originWidth, //图片原始宽度
+            originHeight,//图片原始高度
+            currentFrontColor,//当前的前景色
+            currentBackColor; //当前的背景色 
+
+        // 初始化
+        $(function(){  
+            var initHexes = $('.default_color_list__item')[0].dataset.hex;
+            var initHex = initHexes.split(',');
+            currentFrontColor = initHex[0];
+            currentBackColor = initHex[1];
+            changeItemColor($('#front_color'), initHex[0]);
+            changeItemColor($('#back_color'), initHex[1]);
+            
+            setSvgFilter(initHexes);
+
+            var cp = new colorPicker('js_cp', initHex[0]);
+            var cp2 = new colorPicker('js_cp2' ,initHex[1]); 
+        }); 
+
+        $('#js_upload').change(function(e){
+            //获取图片资源
+            var file = e.target.files[0]; 
+            fileName = file.name;//文件名
+            fileType = file.type;//文件类型
+            fileSize = file.size;//文件大小
+
+            var reader = new FileReader();
+
+            reader.onload = function(){
+                var image = new Image();
+                image.src = this.result;
+                image.onload = function(){
+                    originWidth = this.width;
+                    originHeight = this.height;
+                    saveSvgToImage($('#preview_cont'), this.width, this.height, fileType); 
+                }
+                // 上传图片后设置svg预览图片
+                $('#preview_img')[0].setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.result);
+            }
+
+            // 读取文件
+            reader.readAsDataURL(file);
+        });
+
+        //设置滤镜
+        function setSvgFilter(hexes) {
+            var hex = hexes.split(',');
+            var color1 = tinycolor(hex[0]).toRgb();
+            var color2 = tinycolor(hex[1]).toRgb();
+            
+            var c1   = {};
+            c1.r   = color1.r / 255;
+            c1.g = color1.g / 255;
+            c1.b  = color1.b / 255;
+            
+            var c2   = {};
+            c2.r  = color2.r / 255;
+            c2.g = color2.g / 255;
+            c2.b  = color2.b / 255;
+            
+            $('#funcR').attr('tableValues', c1.r + ' ' + c2.r);
+            $('#funcG').attr('tableValues', c1.g + ' ' + c2.g);
+            $('#funcB').attr('tableValues', c1.b + ' ' + c2.b);
+
+            $('.svg_filter').attr('id', 'duotone_' + hex[0] + hex[1]);
+            $('#preview_img').attr('filter', 'url(#duotone_' + hex[0] + hex[1] + ')');
+
+        };               
+
+        // svg生成图片
+        function saveSvgToImage(target, width, height, type){
+            if(width == undefined) return;
+            var svgCon = target.prop("outerHTML"); 
+            //svg转base64             
+            var svgDataUri = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(svgCon)));
+
+            var svgImage = new Image();
+            svgImage.src = svgDataUri;
+
+            // svg内容加载完毕后
+            svgImage.onload = function(){
+                // 生成图片需要的canvas
+                var canvas = document.createElement('canvas'),
+                    context = canvas.getContext('2d');
+
+                // canvas尺寸
+                canvas.width = width;
+                canvas.height = height;
+
+                // 画图
+                context.drawImage(svgImage, 0, 0, width, height);
+
+                imgDataUri = canvas.toDataURL(type);
+
+                //添加图片
+                var img = document.createElement('img');
+                img.src = imgDataUri;
+                $('#img_box').html('').append(img);
+
+                $('.btn_download').attr({'href':imgDataUri, 'download':'duotone_' + currentFrontColor + '_' + currentBackColor + '_' + fileName});
+            }
+        };            
+
+        // 改变默认配色
+        $('.default_color_list__item').click(function(){
+            $('.default_color_list__item').removeClass('current');
+            $(this).addClass('current');
+
+            var hexes = $(this).attr('data-hex');
+            var hex = hexes.split(',');
+            currentFrontColor = hex[0];
+            currentBackColor = hex[1];
+            changeItemColor($('#front_color'), hex[0]);
+            changeItemColor($('#back_color'), hex[1]);
+            var cp = new colorPicker('js_cp', hex[0]);
+            var cp2 = new colorPicker('js_cp2' ,hex[1]); 
+            
+            setSvgFilter(hexes);
+            saveSvgToImage($('#preview_cont'), originWidth, originHeight, fileType);
+        });
+
+
+        // 改变自定义颜色
+        function changeItemColor(item, hex){
+            var hex = tinycolor(hex).toHexString();
+            item.html(hex).css('background-color', hex);
+        };
+
+        $('.btn_download').click(function(){
+            if($(this).attr('download') == null){
+                alert('请先上传图片');
+            } else {
+                
+            }                     
+        });           
+    
+        // 拾色器
+        var colorPicker = function(id, hex){
+            this.element = $('#' + id);
+            this.cpCanvas = this.element.find(".color_picker__canvas");//取色区域的jq对象
+            this.domCanvas = this.cpCanvas[0];//取色区域的DOM对象
+            this.cpHue = this.element.find(".color_picker__hue");//色相区域
+            this.cpCircle = this.element.find(".color_picker__circle");//取色区域取色小圆点
+            this.cpHueCircle = this.element.find(".color_picker__hue_circle");//色相区域取色小圆点
+            this.width = this.domCanvas.width || 300;//取色区域的宽度
+            this.height = this.domCanvas.height || 156;//取色区域的高度
+            this.context = this.domCanvas.getContext("2d"); 
+            this.canvasX = 0;//取色区域相对于canvas画布水平位置
+            this.canvasY = 0;//取色区域相对于canvas画布垂直位置
+            this.hsl=[0,100,50];//初始化hsl
+            this.rgb=[255,0,0];//初始化rgb
+            this.hsv=[0,100,100];//初始化hsv
+            this.hex = hex || 'ffffff';//初始化hex
+            this._init();          
+            this._pickColor();//点击取色的函数
+            this._slideHue();//色相区域的函数
+
+        }
+
+        colorPicker.prototype = {
+            _init:function(){
+                this._getPos();
+            },
+
+            //填充取色区域的渐变
+            _draw:function(color){
+                var x1 = 0;
+                var y1 = 0;
+                //水平的渐变
+                var linear_gradient_hori = this.context.createLinearGradient(x1, y1, this.width, 0);
+                linear_gradient_hori.addColorStop(0, 'rgba(255,255,255,1)'); 
+                linear_gradient_hori.addColorStop(1, color ? color:'rgba(255,0,0,1)');//添加上颜色
+                this.context.fillStyle = linear_gradient_hori;
+                this.context.fillRect(0, 0, this.width, this.height); 
+                //垂直的渐变
+                var linear_gradient_ver = this.context.createLinearGradient(x1, y1, 0, this.height);
+                linear_gradient_ver.addColorStop(0, 'rgba(0,0,0,0)'); 
+                linear_gradient_ver.addColorStop(1, 'rgba(0,0,0,1)');
+                this.context.fillStyle = linear_gradient_ver;
+                this.context.fillRect(0, 0, this.width, this.height); 
+            },
+
+            //取色
+            _pickColor:function(){
+                var that = this;
+                var colorValue = that.element.prev();
+                that.cpCanvas.bind('mousedown', function(e){
+                    that._getColorXY(e);
+                    that._preview();
+
+                    that.cpCanvas.bind('mousemove', function(e){
+                        that._getColorXY(e);
+                        that._preview();
+                    });
+                });
+
+                that.cpCanvas.bind('mouseup', function(e){
+                    that.cpCanvas.unbind("mousemove");
+                    saveSvgToImage($('#preview_cont'), originWidth, originHeight, fileType);
+                });
+            },
+
+            //通过坐标获取颜色
+            _getColorXY:function(e){
+                var canvasrect = this.domCanvas.getBoundingClientRect();
+                this.canvasX = e.clientX - canvasrect.left * (this.width / canvasrect.width);//获取点击的位置
+                this.canvasY = e.clientY - canvasrect.top * (this.height / canvasrect.height);
+                var imageData = this.context.getImageData(this.canvasX, this.canvasY, 1, 1);//用canvas的getImageData方法来获得该处的颜色
+                var pixel = imageData.data;
+                this.hex = tinycolor({r:pixel[0], g:pixel[1], b:pixel[2]}).toHex();
+                this.cpCircle.css({'top':this.canvasY - 8, 'left':this.canvasX - 8});//设置取色小圆圈的位置。-8是减去宽和边框的一半
+            },
+
+            // 改变色相
+            _slideHue:function(){
+                var that = this;
+                that.cpHue.bind('mousedown', function(e){
+                    that._getHueX(e);
+                    that._preview();
+
+                    that.cpHue.bind('mousemove', function(e){
+                        that._getHueX(e);
+                        that._preview();
+                    });
+                });
+
+                that.cpHue.bind('mouseup', function(e){
+                    that.cpHue.unbind("mousemove");
+                    saveSvgToImage($('#preview_cont'), originWidth, originHeight, fileType);
+                });
+            },
+
+            //通过X轴坐标获取色相
+            _getHueX:function(e){
+                this.hsl[0] = Math.round(e.offsetX / this.width * 360);//在这里选择只是变化了h值
+                var hslString = 'hsla(' + this.hsl[0] + ',100%,50%,1' + ')';
+                this._draw(hslString);//重新绘制取色区域;
+                this.hex = tinycolor(hslString).toHex();
+                this.cpHueCircle.css({'left':e.offsetX - 8});//减去圆圈本身的宽和边框的一半
+            },
+
+            _preview:function(){
+                var colorValue = this.element.prev();
+                changeItemColor(colorValue, this.hex);
+                if(colorValue.attr('id') == 'front_color'){
+                    currentFrontColor = this.hex;
+                }else{
+                    currentBackColor = this.hex;
+                }
+                var hexes = currentFrontColor + ',' + currentBackColor;
+                setSvgFilter(hexes);
+            },
+
+            _getPos:function(){
+                this.hsl[0] = tinycolor(this.hex).toHsl().h;
+                var hslString = 'hsla(' + this.hsl[0] + ',100%,50%,1' + ')';
+                this._draw(hslString);//绘制取色渐变区域的函数 
+                var offestWidth = this.hsl[0] / 360 * this.width;
+                this.cpHueCircle.css({"left":offestWidth - 8});//改变颜色条选择圆圈的位置
+                // 根据hsb来确定渐变区域选色圆圈的位置
+                this.hsv = tinycolor(this.hex).toHsv();
+                var canvaswidth = this.hsv.s * this.width;
+                var canvasheight = (1 - this.hsv.v) * this.height;
+                this.cpCircle.css({'top':canvasheight - 8, 'left':canvaswidth - 8});
+            }                      
+
+        }          
+              
+    </script>
+</body>
+</html>
