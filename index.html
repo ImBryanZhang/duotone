@@ -9,20 +9,7 @@
     <article class="wrap">    
     	<header class="top_bar">
             <section class="top_bar__bd">
-                <h1 class="system_name" style="display:none;"><span>Duo</span><span>tone</span></h1>
-
-                <div class="user" style="display:none;">
-                    <div class="user__aside">
-                        <img class="user__avatar" src="http://y.gtimg.cn/mediastyle/global/extra/singer/1.jpg" alt="" >
-                    </div>
-                    <div class="user__bd">
-                        <h2 class="user__name">用化名</h2>
-                        <a class="logout" href="##">退出</a>     
-                    </div>
-                </div>
-
-                <div style="display:none;">你好，请先<a class="login" href="##">登录</a></div>
-                
+                <h1 class="system_name" style="display:none;"><span>Duo</span><span>tone</span></h1>                
             </section>
     	</header>
 
@@ -327,6 +314,8 @@
             item.html(hex).css('background-color', hex);
             if(tinycolor(hex).isLight() == true){
                 item.css('color', '#000');
+            }else{
+                item.css('color', '#fff');
             }
         };
 
